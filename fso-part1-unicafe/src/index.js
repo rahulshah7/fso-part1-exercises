@@ -27,7 +27,7 @@ const Statistics = ({ good, neutral, bad, total, average, positivePercent }) => 
           <Statistic text={"Bad"} value={bad}></Statistic>
           <Statistic text={"Total"} value={total}></Statistic>
           <Statistic text={"Average"} value={average}></Statistic>
-          <Statistic text={"Positive"} value={positivePercent}></Statistic>
+          <Statistic text={"Positive"} value={positivePercent + "%"}></Statistic>
         </tbody>
       </table>
     </>
@@ -46,7 +46,7 @@ const App = () => {
 
   const total = good + bad + neutral
   const average = ((good + bad * -1) / total) || 0
-  const positivePercent = good / total || 0
+  const positivePercent = good / total * 100 || 0
 
   return (
     <div>

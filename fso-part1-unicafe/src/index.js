@@ -3,6 +3,15 @@ import ReactDOM from 'react-dom'
 
 const Button = ({ handleClick, text }) => <button onClick={handleClick}>{text}</button>
 
+const Statistic = ({ text, value }) => {
+  return (
+    <tr>
+      <td>{text}</td>
+      <td>{value}</td>
+    </tr>
+  )
+}
+
 const Statistics = ({ good, neutral, bad, total, average, positivePercent }) => {
   if (total == 0) {
     return <p>No feedback given</p>
@@ -13,30 +22,12 @@ const Statistics = ({ good, neutral, bad, total, average, positivePercent }) => 
       <h2>Statistics</h2>
       <table>
         <tbody>
-          <tr>
-            <td>Good</td>
-            <td>{good}</td>
-          </tr>
-          <tr>
-            <td>Neutral</td>
-            <td>{neutral}</td>
-          </tr>
-          <tr>
-            <td>Bad</td>
-            <td>{bad}</td>
-          </tr>
-          <tr>
-            <td>Total</td>
-            <td>{total}</td>
-          </tr>
-          <tr>
-            <td>Average</td>
-            <td>{average}</td>
-          </tr>
-          <tr>
-            <td>Positive</td>
-            <td>{positivePercent}%</td>
-          </tr>
+          <Statistic text={"Good"} value={good}></Statistic>
+          <Statistic text={"Neutral"} value={neutral}></Statistic>
+          <Statistic text={"Bad"} value={bad}></Statistic>
+          <Statistic text={"Total"} value={total}></Statistic>
+          <Statistic text={"Average"} value={average}></Statistic>
+          <Statistic text={"Positive"} value={positivePercent}></Statistic>
         </tbody>
       </table>
     </>

@@ -5,6 +5,10 @@ const Button = ({ handleClick, children }) => (
   <button onClick={handleClick}>{children}</button>
 );
 
+const Anecdote = ({ selected }) => <p>{selected}</p>;
+
+const Votes = ({ voteCount }) => <p>has {voteCount} votes</p>;
+
 const App = props => {
   const [selected, setSelected] = useState(0);
   const [votes, setVotes] = useState([...props.anecdotes].map(el => 0));
@@ -24,10 +28,11 @@ const App = props => {
 
   return (
     <div>
+      <h1>Anecdote of the day</h1>
       <Button handleClick={nextQuote}>next anecdote</Button>
       <Button handleClick={addVote}>vote</Button>
-      <p>{props.anecdotes[selected]}</p>
-      <p>has {votes[selected]} votes</p>
+      <Anecdote selected={props.anecdotes[selected]}></Anecdote>
+      <Votes voteCount={votes[selected]}></Votes>
     </div>
   );
 };

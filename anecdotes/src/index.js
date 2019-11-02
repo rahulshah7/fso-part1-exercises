@@ -7,6 +7,22 @@ const Button = ({ handleClick, children }) => (
 
 const Anecdote = ({ selected }) => <p>{selected}</p>;
 
+const MostVotes = ({ anecdotes, votes }) => {
+  // See url - do not use oneliner to calc index of max of array in production apps
+  // https://stackoverflow.com/questions/11301438/return-index-of-greatest-value-in-an-array
+  const max_pos = votes.indexOf(Math.max(...votes));
+
+  if (votes.some(el => el > 0)) {
+    return (
+      <>
+        <h2>Anecdote with the most votes</h2>
+        <Anecdote selected={anecdotes[max_pos]}></Anecdote>
+        <Votes voteCount={votes[max_pos]}></Votes>
+      </>
+    );
+  } else return null;
+};
+
 const Votes = ({ voteCount }) => <p>has {voteCount} votes</p>;
 
 const App = props => {
@@ -33,6 +49,7 @@ const App = props => {
       <Button handleClick={addVote}>vote</Button>
       <Anecdote selected={props.anecdotes[selected]}></Anecdote>
       <Votes voteCount={votes[selected]}></Votes>
+      <MostVotes anecdotes={props.anecdotes} votes={votes}></MostVotes>
     </div>
   );
 };
